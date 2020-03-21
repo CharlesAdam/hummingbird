@@ -36,4 +36,43 @@ class Migration(migrations.Migration):
                 'ordering': ['report', 'state'],
             },
         ),
+        migrations.CreateModel(
+            name='DailyState',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('datasource',models.CharField(max_length=255)),
+                ('state',models.CharField(max_length=255)),
+                ('suspects', models.PositiveSmallIntegerField(default=0)),
+                ('refuses', models.PositiveSmallIntegerField(default=0)),
+                ('cases', models.PositiveSmallIntegerField(default=0)),
+                ('casesNew', models.PositiveSmallIntegerField(default=0)),
+                ('deaths', models.PositiveSmallIntegerField(default=0)),
+                ('deathsNew', models.PositiveSmallIntegerField(default=0)),
+                ('broadcasts', models.PositiveIntegerField(choices=[(0, 'false'),(1, 'true')])),
+                ('comments', models.TextField()),
+            ],
+            options={
+                'verbose_name': 'DailyState'
+            },
+        ),
+        migrations.CreateModel(
+            name='DailyBrasilIO',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('city',models.CharField(max_length=255)),
+                ('cases', models.PositiveSmallIntegerField(default=0)),
+                ('date', models.DateField()),
+                ('deaths', models.PositiveSmallIntegerField(default=0)),
+                ('discarded', models.PositiveSmallIntegerField(default=0)),
+                ('notes', models.TextField()),
+                ('notified', models.PositiveSmallIntegerField(default=0)),
+                ('place_type', models.CharField(choices=[('city', 'cidade'),('state', 'estado')])),
+                ('source_url', models.TextField()),
+                ('state', models.CharField(max_length=2)),
+                ('suspect', models.PositiveSmallIntegerField(default=0)),
+            ],
+            options={
+                'verbose_name': 'DailyBrasilIO'
+            },
+        ),
     ]
